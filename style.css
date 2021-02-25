@@ -1,5 +1,6 @@
 body {
     background-color: #e7e7e7;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .calculator-container {
@@ -36,14 +37,14 @@ body {
 }
 
 .result {
-    color: cornsilk;
+    color: rgb(255, 255, 255);
     font-size: 60px;
     letter-spacing: 5px;
     justify-self: end;
 }
 
 .previous-result {
-    color: cornsilk;
+    color: rgb(255, 255, 255);
     font-size: 30px;
     letter-spacing: 5px;
 }
@@ -69,4 +70,8 @@ body {
     color: cornsilk;
     font-size: 1.5em;
     text-align: center;
+}
+
+.green {
+    color: #2ac4a9;
 }
