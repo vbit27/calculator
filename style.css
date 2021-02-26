@@ -30,7 +30,20 @@ body {
         'er nm ds fn';
 }
 
-.result-container{
+.function-container {
+    grid-column: 1 / 5;
+    grid-row: 2 / 3;
+    display: grid;
+}
+
+.function {
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    letter-spacing: 5px;
+    justify-self: end;
+}
+
+.display-value-container{
     grid-column: 1 / 5;
     grid-row: 3 / 5;
     display: grid;
@@ -38,7 +51,7 @@ body {
 
 .result {
     color: rgb(255, 255, 255);
-    font-size: 60px;
+    font-size: 50px;
     letter-spacing: 5px;
     justify-self: end;
 }
@@ -62,6 +75,7 @@ body {
     background-color: #30353d;
 }
 
+
 .buttons {
     background-color: #282d36;
     border-radius: 20px;
@@ -74,4 +88,8 @@ body {
 
 .green {
     color: #2ac4a9;
+}
+
+.red {
+    color: #e26363;
 }
