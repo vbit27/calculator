@@ -32,11 +32,12 @@ function addNumbers(e) {
 //Chooses an Operator
 
 function chooseOperator (e) {
-    operator = e.target.id;
     if (e.target !== e.currentTarget) {
         if (firstNumber !== '' && currentValue !== '') {
             calculate();  
+            operator = e.target.id;
         } else if (currentValue !== '') {
+            operator = e.target.id;
             firstNumber = currentValue;
             currentValue = '';
             updateDisplay(operator);
@@ -47,11 +48,13 @@ function chooseOperator (e) {
 // Calculates 
 
 function calculate () {
-    secondNumber = currentValue;
-    operate(operator, firstNumber, secondNumber);
-    firstNumber = sumValue;
-    currentValue = '';
-    updateDisplay(sumValue);
+    if (currentValue) {
+        secondNumber = currentValue;
+        operate(operator, firstNumber, secondNumber);
+        firstNumber = sumValue;
+        currentValue = '';
+        updateDisplay(sumValue);
+    }
 }
 
 
