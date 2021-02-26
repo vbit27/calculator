@@ -1,8 +1,10 @@
 //const numbers = document.querySelectorAll('.number');
 const numbers = document.querySelector('.numbers-button-container');
 const displayResult = document.querySelector('.result');
-const operatorElements = document.querySelector('.function-column-container')
-const equalOperatorElement = document.querySelector('.equal-operator-container')
+const operatorElements = document.querySelector('.function-column-container');
+const equalOperatorElement = document.querySelector('.equal-operator-container');
+const clearButtonElement = document.querySelector('.first-row-container');
+
 
 let currentValue = '';
 let firstNumber = '';
@@ -64,7 +66,7 @@ function chooseOperator (e) {
 
 // When Clicking the equal sign
 
-function equal () {
+function equal() {
     if (firstNumber && operator && currentValue) {
         calculate ();
         currentValue = '';
@@ -75,13 +77,28 @@ function equal () {
     }    
 }
 
+// Clear all the options
 
+function clearEverything(e) {
+    if (e.target !== e.currentTarget && e.target.id === 'clear') {
+        currentValue = '';
+        firstNumber = '';
+        secondNumber = '';
+        operator = '';
+        sumValue = '';
+        updateDisplay('0');
+    } e.stopPropagation();
+}
 
 
 const add = (a, b) => sumValue = parseInt(a) + parseInt(b);
 const subtract = (a, b) => sumValue = a - b;
 const multiply = (a, b) => sumValue = a * b;
-const divide = (a, b) => sumValue = Math.round(a/b * 1e2) / 1e2;
+const divide = (a, b) => {
+    if (b == 0) {
+        return sumValue = ':=)'
+    } sumValue = Math.round(a/b * 1e2) / 1e2;
+}
 
 const operate = (operator, num1, num2) => {
     if (operator === '+') add(num1, num2);
@@ -94,6 +111,7 @@ const operate = (operator, num1, num2) => {
 numbers.addEventListener('click', addNumbers, false);
 operatorElements.addEventListener('click', chooseOperator);
 equalOperatorElement.addEventListener('click', equal);
+clearButtonElement.addEventListener('click', clearEverything);
 
 
 
