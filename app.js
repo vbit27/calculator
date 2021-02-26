@@ -1,16 +1,20 @@
 //const numbers = document.querySelectorAll('.number');
 const numbers = document.querySelector('.numbers-button-container');
 const displayResult = document.querySelector('.result');
+const operatorElements = document.querySelector('.function-column-container')
 
 
-
+let firstNumber;
+let operator;
+let secondNumber;
 let currentValue ='';
 
+// Chooses Numbers
 
 function addNumbers(e) {
     if (e.target !== e.currentTarget) {
          let valueSelected = e.target.id;
-         currentValue += valueSelected
+         currentValue += valueSelected;
     }
     updateDisplay();
     e.stopPropagation();
@@ -20,24 +24,25 @@ function updateDisplay () {
     displayResult.textContent = currentValue; 
 }
 
+//Chooses an Operator
+
+function chooseOperator (e) {
+    if (currentValue !== '') {
+        if (e.target !== e.currentTarget) {
+            let operatorSelected = e.target.id;
+            firstNumber = currentValue;
+            currentValue = operatorSelected;
+            operator = operatorSelected;
+        }
+    updateDisplay();
+    currentValue = ''
+    e.stopPropagation();
+    }    
+}
+
 numbers.addEventListener('click', addNumbers, false);
+operatorElements.addEventListener('click', chooseOperator);
 
-
-/*numbers.forEach(number => {
-    number.addEventListener('click', (e) => {
-        let displayValue = '';
-        if (e.target.id === 'button-7') displayValue = 7; 
-        else if (e.target.id === 'button-9') displayValue += '9';
-        else if (e.target.id === 'button-4') displayValue += '4';
-        else if (e.target.id === 'button-5') displayValue += '5';
-        else if (e.target.id === 'button-6') displayValue += '6';
-        else if (e.target.id === 'button-1') displayValue += '1';
-        else if (e.target.id === 'button-2') displayValue += '2';
-        else if (e.target.id === 'button-3') displayValue += '3';
-        else if (e.target.id === 'button-0') displayValue += '0';
-        return currentValue = displayValue;
-    })    
-});*/
 
 
 
