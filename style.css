@@ -74,7 +74,18 @@ body {
     border-radius: 30px;
     background-color: #30353d;
 }
+.first-row-container {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column: 1 / 4;
 
+    
+
+}
 
 .buttons {
     background-color: #282d36;
