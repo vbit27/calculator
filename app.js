@@ -1,21 +1,26 @@
 //const numbers = document.querySelectorAll('.number');
-const numbers = document.querySelector('.all-button-container');
+const numbers = document.querySelector('.numbers-button-container');
+const displayResult = document.querySelector('.result');
 
 
 
-numbers.addEventListener('click', addNumbers, false);
-
-let displayValueScreen ='';
+let currentValue ='';
 
 
 function addNumbers(e) {
     if (e.target !== e.currentTarget) {
          let valueSelected = e.target.id;
-         displayValueScreen += valueSelected
+         currentValue += valueSelected
     }
+    updateDisplay();
     e.stopPropagation();
 }
 
+function updateDisplay () {
+    displayResult.textContent = currentValue; 
+}
+
+numbers.addEventListener('click', addNumbers, false);
 
 
 /*numbers.forEach(number => {
@@ -30,7 +35,7 @@ function addNumbers(e) {
         else if (e.target.id === 'button-2') displayValue += '2';
         else if (e.target.id === 'button-3') displayValue += '3';
         else if (e.target.id === 'button-0') displayValue += '0';
-        return displayValueScreen = displayValue;
+        return currentValue = displayValue;
     })    
 });*/
 
