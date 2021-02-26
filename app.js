@@ -36,7 +36,10 @@ function chooseOperator (e) {
         if (firstNumber !== '' && currentValue !== '') {
             calculate();  
             operator = e.target.id;
-        } else if (currentValue !== '') {
+        } else if (firstNumber){
+            operator = e.target.id;
+            updateDisplay(operator);
+        }else if (currentValue !== '') {
             operator = e.target.id;
             firstNumber = currentValue;
             currentValue = '';
