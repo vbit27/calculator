@@ -17,15 +17,29 @@ function updateDisplay (value) {
     displayResult.textContent = value; 
 }
 
+
+// Calculates 
+
+function calculate () {
+    if (currentValue) {
+        secondNumber = currentValue;
+        operate(operator, firstNumber, secondNumber);
+        firstNumber = sumValue;
+        updateDisplay(sumValue);
+        currentValue = '';
+    }
+}
+
 // Chooses Numbers
 
 function addNumbers(e) {
     if (e.target !== e.currentTarget) {
-         let valueSelected = e.target.id;
-         currentValue += valueSelected;
-    }
-    updateDisplay(currentValue);
-    e.stopPropagation();
+        if (currentValue.length < 10) {
+            currentValue += e.target.id;
+        }    
+    } updateDisplay(currentValue);
+      e.stopPropagation();
+    
 }
 
 
@@ -48,23 +62,26 @@ function chooseOperator (e) {
   } e.stopPropagation();
 }
 
-// Calculates 
+// When Clicking the equal sign
 
-function calculate () {
-    if (currentValue) {
-        secondNumber = currentValue;
-        operate(operator, firstNumber, secondNumber);
-        firstNumber = sumValue;
+function equal () {
+    if (firstNumber && operator && currentValue) {
+        calculate ();
         currentValue = '';
-        updateDisplay(sumValue);
-    }
+        firstNumber = '';
+        secondNumber = '';
+        operator = '';
+        sumValue = '';
+    }    
 }
+
+
 
 
 const add = (a, b) => sumValue = parseInt(a) + parseInt(b);
 const subtract = (a, b) => sumValue = a - b;
 const multiply = (a, b) => sumValue = a * b;
-const divide = (a, b) => sumValue = a / b;
+const divide = (a, b) => sumValue = Math.round(a/b * 1e2) / 1e2;
 
 const operate = (operator, num1, num2) => {
     if (operator === '+') add(num1, num2);
@@ -76,12 +93,7 @@ const operate = (operator, num1, num2) => {
 
 numbers.addEventListener('click', addNumbers, false);
 operatorElements.addEventListener('click', chooseOperator);
-equalOperatorElement.addEventListener('click', calculate);
+equalOperatorElement.addEventListener('click', equal);
 
 
 
-/*if ( currentValue !== '' && secondNumber !== '' && operator !== '') {
-                calculate(operator, firstNumber, currentValue);
-                operator = e.target.id;
-
-            }*/
