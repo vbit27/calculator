@@ -13,8 +13,8 @@ let sumValue;
 
 // Updates the screen
 
-function updateDisplay () {
-    displayResult.textContent = currentValue; 
+function updateDisplay (value) {
+    displayResult.textContent = value; 
 }
 
 // Chooses Numbers
@@ -24,7 +24,7 @@ function addNumbers(e) {
          let valueSelected = e.target.id;
          currentValue += valueSelected;
     }
-    updateDisplay();
+    updateDisplay(currentValue);
     e.stopPropagation();
 }
 
@@ -32,16 +32,16 @@ function addNumbers(e) {
 //Chooses an Operator
 
 function chooseOperator (e) {
-    if (currentValue !== '') {
-        if (e.target !== e.currentTarget) {
-            operator = e.target.id;
+    operator = e.target.id;
+    if (e.target !== e.currentTarget) {
+        if (firstNumber !== '' && currentValue !== '') {
+            calculate();  
+        } else if (currentValue !== '') {
             firstNumber = currentValue;
-            currentValue = operator;
+            currentValue = '';
+            updateDisplay(operator);
         }
-    updateDisplay();
-    currentValue = '';
-    e.stopPropagation();
-    }    
+  } e.stopPropagation();
 }
 
 // Calculates 
@@ -49,8 +49,9 @@ function chooseOperator (e) {
 function calculate () {
     secondNumber = currentValue;
     operate(operator, firstNumber, secondNumber);
-    currentValue = sumValue;
-    updateDisplay();
+    firstNumber = sumValue;
+    currentValue = '';
+    updateDisplay(sumValue);
 }
 
 
