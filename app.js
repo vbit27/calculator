@@ -1,4 +1,3 @@
-//const numbers = document.querySelectorAll('.number');
 const numbers = document.querySelector('.numbers-button-container');
 const displayResult = document.querySelector('.result');
 const operatorElements = document.querySelector('.function-column-container');
@@ -94,10 +93,9 @@ function clearFunctions(e) {
         sumValue = '';
         updateDisplay('0');       
     } else if (e.target !== e.currentTarget && e.target.id === 'delete') {
-        let updatedCurrentCalue = currentValue.slice(0, -1);
-        currentValue = updatedCurrentCalue;
-        updateDisplay(currentValue);
-
+            let updatedCurrentCalue = currentValue.slice(0, -1);
+            currentValue = updatedCurrentCalue;
+            updateDisplay(currentValue);
     }
      e.stopPropagation();
 }
@@ -124,6 +122,10 @@ numbers.addEventListener('click', addNumbers, false);
 operatorElements.addEventListener('click', chooseOperator);
 equalOperatorElement.addEventListener('click', equal);
 clearButtonElement.addEventListener('click', clearFunctions);
+window.addEventListener('keydown', function(e){
+    const elementSElect = document.querySelector(`div[id='${e.key}']`);
+console.log(elementSElect)
+})
 
 
 
