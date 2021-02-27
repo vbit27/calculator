@@ -16,7 +16,10 @@ let sumValue;
 // Updates the screen
 
 function updateDisplay (value) {
-    displayResult.textContent = value; 
+   /* if (value.toString().length > 9) {
+       displayResult.textContent = 'too big, baby!';
+    }
+    else*/ displayResult.textContent = value; 
 }
 
 
@@ -91,13 +94,13 @@ function clearEverything(e) {
 }
 
 
-const add = (a, b) => sumValue = parseInt(a) + parseInt(b);
-const subtract = (a, b) => sumValue = a - b;
-const multiply = (a, b) => sumValue = a * b;
+const add = (a, b) => sumValue = Math.round((parseFloat(a) + parseFloat(b)) * 1e2) / 1e2;
+const subtract = (a, b) => sumValue = Math.round((parseFloat(a) - parseFloat(b)) * 1e2) / 1e2;
+const multiply = (a, b) => sumValue = Math.round((parseFloat(a) * parseFloat(b)) * 1e2) / 1e2;
 const divide = (a, b) => {
     if (b == 0) {
         return sumValue = ':=)'
-    } sumValue = Math.round(a/b * 1e2) / 1e2;
+    } sumValue = Math.round((parseFloat(a) / parseFloat(b)) * 1e2) / 1e2;
 }
 
 const operate = (operator, num1, num2) => {
