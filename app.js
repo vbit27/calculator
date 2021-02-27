@@ -40,7 +40,11 @@ function calculate () {
 function addNumbers(e) {
     if (e.target !== e.currentTarget) {
         if (currentValue.length < 10) {
-            currentValue += e.target.id;
+            if(e.target.id === ".") {
+                if (currentValue.includes('.')) {
+                    return currentValue;
+                }
+            }currentValue += e.target.id;
         }    
     } updateDisplay(currentValue);
       e.stopPropagation();
