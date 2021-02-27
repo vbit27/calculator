@@ -16,10 +16,9 @@ let sumValue;
 // Updates the screen
 
 function updateDisplay (value) {
-   /* if (value.toString().length > 9) {
+    if (value.toString().length > 11) {
        displayResult.textContent = 'too big, baby!';
-    }
-    else*/ displayResult.textContent = value; 
+    } else displayResult.textContent = value; 
 }
 
 
@@ -86,15 +85,21 @@ function equal() {
 
 // Clear all the options
 
-function clearEverything(e) {
+function clearFunctions(e) {
     if (e.target !== e.currentTarget && e.target.id === 'clear') {
         currentValue = '';
         firstNumber = '';
         secondNumber = '';
         operator = '';
         sumValue = '';
-        updateDisplay('0');
-    } e.stopPropagation();
+        updateDisplay('0');       
+    } else if (e.target !== e.currentTarget && e.target.id === 'delete') {
+        let updatedCurrentCalue = currentValue.slice(0, -1);
+        currentValue = updatedCurrentCalue;
+        updateDisplay(currentValue);
+
+    }
+     e.stopPropagation();
 }
 
 
@@ -118,7 +123,7 @@ const operate = (operator, num1, num2) => {
 numbers.addEventListener('click', addNumbers, false);
 operatorElements.addEventListener('click', chooseOperator);
 equalOperatorElement.addEventListener('click', equal);
-clearButtonElement.addEventListener('click', clearEverything);
+clearButtonElement.addEventListener('click', clearFunctions);
 
 
 
