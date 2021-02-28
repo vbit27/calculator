@@ -1,4 +1,110 @@
-const numbers = document.querySelector('.numbers-button-container');
+const numbersElement = document.querySelectorAll('.number');
+const displayElement = document.querySelector('.display');
+const operatorElement = document.querySelectorAll('.operator');
+const equalElement = document.querySelector('.equal');
+
+let currentNumber = '';
+let operator = '';
+let firstNumber = null;
+let sumValue = 0;
+
+
+function updateDisplay(number) {
+    displayElement.textContent = number;
+}
+
+function chooseOperator(operator) {
+    if  (firstNumber && operator && currentNumber) {
+        operate(operator, firstNumber, currentNumber);
+    } else if (firstNumber && currentNumber == '') {
+        updateDisplay(operator)
+    } else {
+        firstNumber = currentNumber;
+        updateDisplay(operator)
+        currentNumber = '';
+    };
+    
+}
+
+
+const add = (a, b) => sumValue = Math.round((parseFloat(a) + parseFloat(b)) * 1e2) / 1e2;
+const subtract = (a, b) => sumValue = Math.round((parseFloat(a) - parseFloat(b)) * 1e2) / 1e2;
+const multiply = (a, b) => sumValue = Math.round((parseFloat(a) * parseFloat(b)) * 1e2) / 1e2;
+const divide = (a, b) => {
+    if (b == 0) {
+        return sumValue = ':=)'
+    } sumValue = Math.round((parseFloat(a) / parseFloat(b)) * 1e2) / 1e2;
+}
+
+
+function operate(operator, num1, num2) {
+    if (currentNumber && operator && firstNumber) {
+        if (operator === '+') add(num1, num2);
+        else if (operator === '-') subtract(num1, num2);
+        else if (operator === '*') multiply(num1, num2);
+        else if (operator === '/') divide(num1, num2);
+        firstNumber = sumValue;
+        currentNumber = '';
+        operator = null;
+        updateDisplay(sumValue);
+    }    
+};
+
+
+numbersElement.forEach(item => {
+    item.addEventListener('click', (e) => {
+        currentNumber += e.target.id
+        updateDisplay(currentNumber);
+    })
+});
+
+operatorElement.forEach(item => {
+    item.addEventListener('click', (e) => {
+        if (currentNumber !== '' && firstNumber !== null && operator) {
+            operate(operator, firstNumber, currentNumber);
+            chooseOperator(e.target.id);
+        } else {
+            operator = e.target.id;
+            chooseOperator(operator);
+        }
+    })
+});
+
+
+
+equalElement.addEventListener('click', () => operate(operator, firstNumber, currentNumber));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*const numbers = document.querySelector('.numbers-button-container');
 const displayResult = document.querySelector('.result');
 const operatorElements = document.querySelector('.function-column-container');
 const equalOperatorElement = document.querySelector('.equal-operator-container');
@@ -125,7 +231,4 @@ clearButtonElement.addEventListener('click', clearFunctions);
 window.addEventListener('keydown', function(e){
     const elementSElect = document.querySelector(`div[id='${e.key}']`);
 console.log(elementSElect)
-})
-
-
-
+}) */
