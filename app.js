@@ -14,10 +14,12 @@ function updateDisplay(number) {
 }
 
 function chooseOperator(operator) {
-    if  (firstNumber && operator && currentNumber) {
-        operate(operator, firstNumber, currentNumber);
-    } else if (firstNumber && currentNumber == '') {
+    if (firstNumber && currentNumber == '') {
         updateDisplay(operator)
+    } else if (firstNumber && operator && currentNumber) {
+        operate(operator, firstNumber, currentNumber);
+        firstNumber = sumValue;
+        currentNumber = '';
     } else {
         firstNumber = currentNumber;
         updateDisplay(operator)
@@ -63,6 +65,7 @@ operatorElement.forEach(item => {
         if (currentNumber !== '' && firstNumber !== null && operator) {
             operate(operator, firstNumber, currentNumber);
             chooseOperator(e.target.id);
+            currentNumber = '';
         } else {
             operator = e.target.id;
             chooseOperator(operator);
