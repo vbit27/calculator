@@ -98,18 +98,26 @@ body {
     grid-column: 3 / 5;
 }
 
-.green {
+#clear {
     color: #2ac4a9;
 }
 
-.buttons.green:hover {
+#delete {
+    color: #2ac4a9;
+}
+
+#clear:hover {
     background-color: #2ac4a809;
 }
 
-.red {
+#delete:hover {
+    background-color: #2ac4a809;
+}
+
+.operator {
     color: #e26363;
 }
 
-.buttons.red:hover {
+.operator:hover {
     background-color: #e263630c;
 }
