@@ -14,7 +14,11 @@ let sumValue = 0;
 
 
 function updateDisplay(value) {
-        displayElement.textContent = value;
+    if (value == '*') {
+        value = 'x';
+    } else if (value == '/') {
+        value = '÷';
+    } displayElement.textContent = value;
 }
 
 function clear() {
@@ -133,6 +137,8 @@ function pushKey(e) {
         backspace();
     } else if (e.key == 'Enter') {
         operate(operator, firstNumber, currentNumber);
+    } else if (e.key == '.') {
+        addComma();
     }
 }
 
