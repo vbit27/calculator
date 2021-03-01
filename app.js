@@ -4,17 +4,12 @@ const operatorElement = document.querySelectorAll('.operator');
 const equalElement = document.querySelector('.equal');
 const clearElement = document.querySelector('.clear');
 const commaElement = document.querySelector('.comma');
+const backspaceElement = document.querySelector('.delete');
 
 let currentNumber = '';
 let operator = null;
 let firstNumber = null;
 let sumValue = 0;
-
-
-
-
-
-
 
 
 
@@ -29,8 +24,6 @@ function clear() {
     sumValue = 0;
     updateDisplay(0);
 }
-
-
 
 
 const add = (a, b) => sumValue = Math.round((parseFloat(a) + parseFloat(b)) * 1e2) / 1e2;
@@ -101,6 +94,20 @@ function addComma() {
 }
 
 
+function backspace() {
+    if (currentNumber.length <= 1) {
+        currentNumber = '';
+        updateDisplay(0);
+    } else { 
+        const arrayNumber = currentNumber.split('');
+        arrayNumber.pop();
+        currentNumber = arrayNumber.join('');
+        console.log(currentNumber);
+        updateDisplay(currentNumber);
+    }
+}
+
+
 numbersElement.forEach(item => {
     item.addEventListener('click', (e) => {
         appendNumber(e.target.id);
@@ -117,7 +124,8 @@ operatorElement.forEach(item => {
 
 equalElement.addEventListener('click', () => operate(operator, firstNumber, currentNumber));
 clearElement.addEventListener('click', clear);
-commaElement.addEventListener('click', addComma)
+commaElement.addEventListener('click', addComma);
+backspaceElement.addEventListener('click', backspace);
 
 
 
