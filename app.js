@@ -2,6 +2,7 @@ const numbersElement = document.querySelectorAll('.number');
 const displayElement = document.querySelector('.display');
 const operatorElement = document.querySelectorAll('.operator');
 const equalElement = document.querySelector('.equal');
+const clearElement = document.querySelector('.clear')
 
 let currentNumber = '';
 let operator = null;
@@ -17,7 +18,14 @@ let sumValue = 0;
 
 
 function updateDisplay(value) {
-    displayElement.textContent = value;
+        displayElement.textContent = value;
+}
+
+function clear() {
+    currentNumber = '';
+    operator = null;
+    firstNumber = null;
+    sumValue = 0;
 }
 
 
@@ -39,10 +47,15 @@ function operate(oper, num1, num2) {
         else if (oper === '-') subtract(num1, num2);
         else if (oper === '*') multiply(num1, num2);
         else if (oper === '/') divide(num1, num2);
+        if (sumValue < 1e10) {
         firstNumber = sumValue;
         currentNumber = '';
         operator = null;
         updateDisplay(sumValue);
+        } else {
+            clear();
+            updateDisplay('too big, baby!');
+        }
     }    
 };
 
@@ -54,7 +67,7 @@ function chooseOperator(value) {
     } else if (firstNumber) {
         operator = value;
         updateDisplay(operator);  
-    }else if (currentNumber) {
+    } else if (currentNumber) {
         operator = value;
         firstNumber = currentNumber;
         currentNumber = ''; 
@@ -65,15 +78,16 @@ function chooseOperator(value) {
 
 
 function appendNumber(number) {
-    if (firstNumber && !operator) {
-        firstNumber = null;
-        currentNumber += number;
-        updateDisplay(currentNumber);
-    } else {
-        currentNumber += number;
-        updateDisplay(currentNumber);
+    if (currentNumber.length < 11) {
+        if (firstNumber && !operator) {
+            firstNumber = null;
+            currentNumber += number;
+            updateDisplay(currentNumber);
+        } else {
+            currentNumber += number;
+            updateDisplay(currentNumber);
+        }
     }
-    
 }
 
 
