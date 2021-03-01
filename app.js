@@ -125,7 +125,6 @@ function backspace() {
 }
 
 function pushKey(e) {
-    console.log(e.key);
     if (e.key >= 0 && e.key <= 9) {
         appendNumber(e.key);
     } else if (e.key == '+' || e.key == '-') {
@@ -150,6 +149,7 @@ operatorElement.forEach(item => {
         chooseOperator(e.target.id);
     })
 });
+
 
 
 
