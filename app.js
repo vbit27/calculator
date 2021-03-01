@@ -4,12 +4,155 @@ const operatorElement = document.querySelectorAll('.operator');
 const equalElement = document.querySelector('.equal');
 
 let currentNumber = '';
-let operator = '';
+let operator = null;
 let firstNumber = null;
 let sumValue = 0;
 
 
-function updateDisplay(number) {
+
+
+
+
+
+
+
+function updateDisplay(value) {
+    displayElement.textContent = value;
+}
+
+
+
+
+const add = (a, b) => sumValue = Math.round((parseFloat(a) + parseFloat(b)) * 1e2) / 1e2;
+const subtract = (a, b) => sumValue = Math.round((parseFloat(a) - parseFloat(b)) * 1e2) / 1e2;
+const multiply = (a, b) => sumValue = Math.round((parseFloat(a) * parseFloat(b)) * 1e2) / 1e2;
+const divide = (a, b) => {
+    if (b == 0) {
+        return sumValue = ':=)'
+    } sumValue = Math.round((parseFloat(a) / parseFloat(b)) * 1e2) / 1e2;
+}
+
+
+function operate(oper, num1, num2) {
+    if (currentNumber && oper && firstNumber) {
+        if (oper === '+') add(num1, num2);
+        else if (oper === '-') subtract(num1, num2);
+        else if (oper === '*') multiply(num1, num2);
+        else if (oper === '/') divide(num1, num2);
+        firstNumber = sumValue;
+        currentNumber = '';
+        operator = null;
+        updateDisplay(sumValue);
+    }    
+};
+
+
+function chooseOperator(value) {
+    if (currentNumber && firstNumber) {
+        operate(operator, firstNumber, currentNumber);
+        operator = value;
+    } else if (firstNumber) {
+        operator = value;
+        updateDisplay(operator);  
+    }else if (currentNumber) {
+        operator = value;
+        firstNumber = currentNumber;
+        currentNumber = ''; 
+        updateDisplay(operator);
+    }
+    
+}
+
+
+function appendNumber(number) {
+    currentNumber += number;
+    updateDisplay(currentNumber);
+}
+
+
+
+numbersElement.forEach(item => {
+    item.addEventListener('click', (e) => {
+        appendNumber(e.target.id);
+    })
+});
+
+operatorElement.forEach(item => {
+    item.addEventListener('click', (e) => {
+        chooseOperator(e.target.id);
+    })
+});
+
+
+
+equalElement.addEventListener('click', () => operate(operator, firstNumber, currentNumber));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*function updateDisplay(number) {
     displayElement.textContent = number;
 }
 
@@ -19,11 +162,11 @@ function chooseOperator(operator) {
     } else if (firstNumber && operator && currentNumber) {
         operate(operator, firstNumber, currentNumber);
         firstNumber = sumValue;
-        currentNumber = '';
+        currentNumber = null;
     } else {
         firstNumber = currentNumber;
         updateDisplay(operator)
-        currentNumber = '';
+        currentNumber = null;
     };
     
 }
@@ -46,26 +189,34 @@ function operate(operator, num1, num2) {
         else if (operator === '*') multiply(num1, num2);
         else if (operator === '/') divide(num1, num2);
         firstNumber = sumValue;
-        currentNumber = '';
-        operator = null;
         updateDisplay(sumValue);
     }    
 };
 
 
+function appendNumber(number) {
+    currentNumber = number;
+}
+
+function clear(){
+    currentNumber = null;
+    operator = null;
+    sumValue = null;
+}
+
 numbersElement.forEach(item => {
     item.addEventListener('click', (e) => {
-        currentNumber += e.target.id
+        appendNumber(e.target.id);
         updateDisplay(currentNumber);
     })
 });
 
 operatorElement.forEach(item => {
     item.addEventListener('click', (e) => {
-        if (currentNumber !== '' && firstNumber !== null && operator) {
+        if (currentNumber && firstNumber && operator) {
             operate(operator, firstNumber, currentNumber);
             chooseOperator(e.target.id);
-            currentNumber = '';
+            currentNumber = null;
         } else {
             operator = e.target.id;
             chooseOperator(operator);
@@ -79,7 +230,7 @@ equalElement.addEventListener('click', () => operate(operator, firstNumber, curr
 
 
 
-
+*/
 
 
 
