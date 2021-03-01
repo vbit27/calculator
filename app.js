@@ -124,6 +124,20 @@ function backspace() {
     }
 }
 
+function pushKey(e) {
+    console.log(e.key);
+    if (e.key >= 0 && e.key <= 9) {
+        appendNumber(e.key);
+    } else if (e.key == '+' || e.key == '-') {
+        chooseOperator(e.key);
+    } else if (e.key == 'Backspace') {
+        backspace();
+    } else if (e.key == 'Enter') {
+        operate(operator, firstNumber, currentNumber);
+    }
+}
+
+
 
 numbersElement.forEach(item => {
     item.addEventListener('click', (e) => {
@@ -143,7 +157,7 @@ equalElement.addEventListener('click', () => operate(operator, firstNumber, curr
 clearElement.addEventListener('click', clear);
 commaElement.addEventListener('click', addComma);
 backspaceElement.addEventListener('click', backspace);
-
+window.addEventListener('keydown', (e) => pushKey(e));
 
 
 
