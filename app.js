@@ -2,7 +2,8 @@ const numbersElement = document.querySelectorAll('.number');
 const displayElement = document.querySelector('.display');
 const operatorElement = document.querySelectorAll('.operator');
 const equalElement = document.querySelector('.equal');
-const clearElement = document.querySelector('.clear')
+const clearElement = document.querySelector('.clear');
+const commaElement = document.querySelector('.comma');
 
 let currentNumber = '';
 let operator = null;
@@ -26,6 +27,7 @@ function clear() {
     operator = null;
     firstNumber = null;
     sumValue = 0;
+    updateDisplay(0);
 }
 
 
@@ -47,7 +49,7 @@ function operate(oper, num1, num2) {
         else if (oper === '-') subtract(num1, num2);
         else if (oper === '*') multiply(num1, num2);
         else if (oper === '/') divide(num1, num2);
-        if (sumValue < 1e10) {
+        if (sumValue < 1e10 || sumValue == ':=)') {
         firstNumber = sumValue;
         currentNumber = '';
         operator = null;
@@ -91,6 +93,13 @@ function appendNumber(number) {
 }
 
 
+function addComma() {
+    if (currentNumber.indexOf('.') === -1) {
+        currentNumber += ".";
+        updateDisplay(currentNumber);
+    }
+}
+
 
 numbersElement.forEach(item => {
     item.addEventListener('click', (e) => {
@@ -107,7 +116,8 @@ operatorElement.forEach(item => {
 
 
 equalElement.addEventListener('click', () => operate(operator, firstNumber, currentNumber));
-
+clearElement.addEventListener('click', clear);
+commaElement.addEventListener('click', addComma)
 
 
 
