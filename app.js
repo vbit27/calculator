@@ -38,21 +38,37 @@ const divide = (a, b) => {
 
 function operate(oper, num1, num2) {
     if (currentNumber && oper && firstNumber) {
-        if (oper === '+') add(num1, num2);
-        else if (oper === '-') subtract(num1, num2);
-        else if (oper === '*') multiply(num1, num2);
-        else if (oper === '/') divide(num1, num2);
-        if (sumValue < 1e10 || sumValue == ':=)') {
+        switch (oper) {
+            case '+':
+                add(num1, num2);
+                break;
+            case '-':
+                subtract(num1, num2);
+                break;
+            case '*':
+                multiply(num1, num2);
+                break;
+            case '/':
+                divide(num1, num2);
+                break;
+        } 
+    } displaySum();
+};
+
+function displaySum() {
+    if (sumValue == ':=)') {
+        clear()
+        updateDisplay('lol');
+    } else if(sumValue > 1e10) {
+        clear();
+        updateDisplay('too big, baby!');
+    } else {
         firstNumber = sumValue;
         currentNumber = '';
         operator = null;
         updateDisplay(sumValue);
-        } else {
-            clear();
-            updateDisplay('too big, baby!');
-        }
-    }    
-};
+    }
+}
 
 
 function chooseOperator(value) {
@@ -95,15 +111,16 @@ function addComma() {
 
 
 function backspace() {
-    if (currentNumber.length <= 1) {
-        currentNumber = '';
-        updateDisplay(0);
-    } else { 
-        const arrayNumber = currentNumber.split('');
-        arrayNumber.pop();
-        currentNumber = arrayNumber.join('');
-        console.log(currentNumber);
-        updateDisplay(currentNumber);
+    if (currentNumber) {
+        if (currentNumber.length <= 1) {
+            currentNumber = '';
+            updateDisplay(0);
+        } else { 
+            const arrayNumber = currentNumber.split('');
+            arrayNumber.pop();
+            currentNumber = arrayNumber.join('');
+            updateDisplay(currentNumber);
+        }
     }
 }
 

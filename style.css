@@ -75,25 +75,25 @@ body {
 }
 
 #clear {
-    color: #2ac4a9;
-}
-
-#delete {
-    color: #2ac4a9;
-}
-
-#clear:hover {
-    background-color: #2ac4a809;
-}
-
-#delete:hover {
-    background-color: #2ac4a809;
-}
-
-.operator {
     color: #e26363;
 }
 
+#delete {
+    color: #e26363;
+}
+
+#clear:hover {
+    background-color: #e263630a;
+}
+
+#delete:hover {
+    background-color: #e263630a;
+}
+
+.operator {
+    color: #2ac4a9;
+}
+
 .operator:hover {
-    background-color: #e263630c;
+    background-color: #2ac4a807;
 }
