@@ -65,8 +65,15 @@ function chooseOperator(value) {
 
 
 function appendNumber(number) {
-    currentNumber += number;
-    updateDisplay(currentNumber);
+    if (firstNumber && !operator) {
+        firstNumber = null;
+        currentNumber += number;
+        updateDisplay(currentNumber);
+    } else {
+        currentNumber += number;
+        updateDisplay(currentNumber);
+    }
+    
 }
 
 
